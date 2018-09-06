@@ -1,9 +1,10 @@
 require_relative 'config/environment'
+require 'securerandom'
 
 class App < Sinatra::Base
   configure do
     enable :sessions unless test?
-    set :session_secret, "secret"
+    set :session_secret, SecureRandom.hex(64)
   end
 
   before do
